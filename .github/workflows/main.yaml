@@ -1,31 +1,46 @@
-# name 可以自定义
-name: Deploy GitHub Pages
+name: charlie-blog deploy workflow
 
-# 触发条件：在 push 到 main分支后
+# 设置触发时机，当推送master分支或者tag到远程时触发
 on:
   push:
+    tags:
+      - "*"
     branches:
-      - main
-
-# 任务
+      - master
+  workflow_dispatch:
+# 各个脚本节点命令
 jobs:
-  build-and-deploy:
+  deploy-and-sync:
+    # 执行环境为linux的ubuntu系统
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      # 从master分支拉取代码
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
         with:
-          persist-credentials: false
-
-      # 生成静态文件
-      - name: Build
-        run: npm install && npm run build
-
-      # 部署到 GitHub Pages
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@releases/v3
+          ref: "master"
+      # 安装pnpm
+      - name: Install pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@latest --activate
+      # 安装node环境
+      - uses: actions/setup-node@v3
         with:
-          ACCESS_TOKEN: ${{ secrets.ME }} # 也就是我们刚才生成的 secret
-          BRANCH: page # 部署到 page 分支
-          FOLDER: docs/.vitepress/dist # vitepress 生成的静态文件存放的地方
+          node-version: "18"
+          cache: "pnpm"
+      # 使用pnpm安装依赖
+      - name: Install dependencies
+        run: pnpm install
+      # 打包vitepress项目
+      - name: Build Site
+        run: pnpm run docs:build
+      # 将打包后dist里的产物提交到prod分支
+      - name: Deploy for Github 🚀
+        uses: JamesIves/github-pages-deploy-action@v4.4.1
+        with:
+          branch: prod
+          folder: docs/.vitepress/dist
+          single-commit: true
+          clean: true
 

@@ -1,3 +1,0 @@
-# TEACH
-
-TEACH index page

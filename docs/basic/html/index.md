@@ -2,7 +2,7 @@
 outline: 
   level: [1,3]
   label: 基础篇
-aside: left
+aside: right
 ---
 
 # BASIC

@@ -1,3 +1,0 @@
-# CORE
-
-CORE index page

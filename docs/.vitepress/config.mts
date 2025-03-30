@@ -32,11 +32,11 @@ export default defineConfig({
     nav: [
       {
         text: '基础',
-        link: '/basic/html/index'
+        link: '/basic/basic/ComputerBase'
       },
       {
         text: '面试',
-        link: '/interview/html/basic1'
+        link: '/interview/basic/ComputerBase'
       },  
       {
         text: '实战教学篇',

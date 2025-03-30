@@ -41,12 +41,12 @@ export const getSideBarList = (pathname: string) => {
       {
         text: '前端基础',
         items: [
-          { text: '计算机基础', link: 'interview/html/basic1' },
-          { text: 'HTML-CSS', link: 'interview/html/basic2' },
+          { text: '计算机基础', link: 'interview/basic/ComputerBase' },
+          { text: 'HTML-CSS', link: 'interview/basic/HTML-CSS' },
           { text: 'SCSS', link: 'interview/html/basic3' },
-          { text: 'JS', link: 'interview/html/basic3' },
-          { text: 'TS', link: 'interview/html/basic4' },
-          { text: 'HTTP网络', link: 'interview/html/basic5' },
+          { text: 'JS', link: 'interview/basic/JS' },
+          { text: 'TS', link: 'interview/basic/TS' },
+          { text: 'HTTP网络', link: 'interview/basic/ComputerNet' },
           { text: '浏览器原理', link: 'interview/html/basic6' },
         ]
       },
@@ -66,6 +66,14 @@ export const getSideBarList = (pathname: string) => {
         items: [
           { text: 'vite/webpack', link: 'interview/html/basic1' },
           { text: '搭建插件', link: 'interview/html/basic2' },
+        ]
+      },
+      {
+        text: '业务场景题',
+        items: [
+          { text: '通信', link: 'interview/html/basic1' },
+          // { text: '组件封装', link: 'interview/html/basic1' },
+          { text: '性能优化', link: 'interview/scene/performance' },
         ]
       }
     ]
